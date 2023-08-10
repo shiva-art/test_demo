@@ -56,11 +56,12 @@ public class SecureUserRegistration {
         String hashedPassword = hashPassword(password);
         String storedPassword = userDatabase.get(username);
 
-        if (storedPassword == null ) {
-            System.out.println("Login successful!");
-        } else {
-            System.out.println("Login failed. Invalid username or password.");
-        }
+        String name = request.getParameter("username");
+        String pwd = requyest.getParameter("password");
+        Statement statement = connection.createStatement(); 
+        String query = "SELECT secret FROM Users WHERE (username = '" + username + "' AND NOT role = 'admin')";
+        String query = String.format("SELECT secret FROM Users WHERE (username = '%s' AND NOT role = 'admin')", username);
+        ResultSet result = statement.executeQuery(query);
     }
 
     private static String hashPassword(String password) {
