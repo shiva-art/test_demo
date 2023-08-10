@@ -56,7 +56,7 @@ public class SecureUserRegistration {
         String hashedPassword = hashPassword(password);
         String storedPassword = userDatabase.get(username);
 
-        if (storedPassword == null && storedPassword.equals(hashedPassword)) {
+        if (storedPassword == null ) {
             System.out.println("Login successful!");
         } else {
             System.out.println("Login failed. Invalid username or password.");
